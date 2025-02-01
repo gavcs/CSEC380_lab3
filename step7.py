@@ -13,10 +13,10 @@ request += "Content-Type: application/x-www-form-urlencoded\r\n"
 request += "Content-Length: 42\r\n\r\n"
 request += "username=alice&password=SecretPassword123!\r\n\r\n"
 
-print(request)
+print("request 1:\n" + request)
 sock1.send(request.encode())
 response = sock1.recv(4096).decode()
-print(response)
+print("response 1:\n" + response)
 sock1.close()
 
 key = response.split("\r\n\r\n")[1].split(":")[2]
@@ -34,7 +34,7 @@ request += "Cookie: " + cookie + "\r\n"
 request += "Content-Type: application/x-www-form-urlencoded\r\n"
 request += "Content-Length: " + str(len(key) - 4) + "\r\n\r\n"
 request += key
-print(request)
+print("request 2:\n" + request)
 
 sock2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock2.connect((host, port))
@@ -42,5 +42,5 @@ sock2.send(request.encode())
 
 response = sock2.recv(4096).decode()
 
-print(response)
+print("response2:\n" + response)
 sock2.close()

@@ -14,10 +14,10 @@ request += "Content-Type: application/x-www-form-urlencoded\r\n"
 request += "Content-Length: 42\r\n\r\n"
 request += "username=alice&password=SecretPassword123!\r\n\r\n"
 
-print(request)
+print("request 1:\n" + request)
 sock1.send(request.encode())
 response = sock1.recv(4096).decode()
-print(response)
+print("response 1:\n" + response)
 sock1.close()
 
 content = response.split("\r\n\r\n")[1]
@@ -31,7 +31,6 @@ elif '*' in content:
     result = int(values[0]) * int(values[1])
 else:
     result = int(values[0]) / int(values[1])
-print(result)
 
 cookie = ""
 for line in response.split("\n"):
@@ -47,7 +46,7 @@ request += "Cookie: " + cookie + "\r\n"
 request += "Content-Type: application/x-www-form-urlencoded\r\n"
 request += "Content-Length: " + str(len(content) - 4) + "\r\n\r\n"
 request += content
-print(request)
+print("request 2:\n" + request)
 
 sock2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock2.connect((host, port))
@@ -55,7 +54,7 @@ sock2.send(request.encode())
 
 response = sock2.recv(4096).decode()
 
-print(response)
+print("response 2:\n" + response)
 sock2.close()
 
 
@@ -66,11 +65,11 @@ request += "Cookie: " + cookie + "\r\n"
 request += "Content-Type: application/x-www-form--urlencoded\r\n"
 request += "Content-length: " + str(len(content) - 4) + "\r\n\r\n"
 request += content
-print(request)
+print("reqest 3:\n" + request)
 
 sock3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock3.connect((host, port))
 sock3.send(request.encode())
 response = sock3.recv(4096).decode()
-print(response)
+print("response 3:\n" + response)
 sock3.close()
