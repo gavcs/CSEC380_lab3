@@ -12,7 +12,7 @@ request = (
     "\r\n"
 )
 
-print("The request sent:\n" + request)
+print("request 1:\n" + request)
 
 request = request.encode()
 
@@ -22,6 +22,6 @@ sock.connect((host, port))
 sock.send(request)
 
 
-print("The response received:")
+print("response 1:")
 print(sock.recv(4096).decode())
 sock.close()

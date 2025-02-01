@@ -14,7 +14,7 @@ request = (
     "User-Agent: CSEC-380\r\n"
     "\r\n"
 )
-print("The request sent:\n" + request)
+print("request 1:\n" + request)
 request = request.encode()
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect((host, port))
@@ -22,8 +22,7 @@ sock.send(request)
 
 # print the response to the request
 response = sock.recv(4096).decode()
-print("The response received:")
-print(response, flush=True)
+print("response 1:\n" + response)
 sock.close()
 
 # get the cookie from the response
@@ -42,7 +41,7 @@ request = (
     "Cookie: " +cookie + "\r\n"
     "\r\n"
 )
-print("\nThe next request sent:\n" + request)
+print("request 2:\n" + request)
 request = request.encode()
 sock2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock2.connect((host, port))
@@ -52,5 +51,5 @@ response = sock2.recv(4096)
 # close the sockets
 sock2.close()
 
-print("The response received:")
+print("response 2:")
 print(response.decode())
