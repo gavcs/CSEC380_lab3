@@ -14,10 +14,10 @@ request += "Content-Type: application/x-www-form-urlencoded\r\n"
 request += "Content-Length: 42\r\n\r\n"
 request += "username=alice&password=SecretPassword123!\r\n\r\n"
 
-print(request)
+print("request 1:\n" + request)
 sock1.send(request.encode())
 response = sock1.recv(4096).decode()
-print(response)
+print("response 1:\n" + response)
 sock1.close()
 
 cookie = ""
@@ -31,7 +31,7 @@ request = newreq[0] + newreq[1]
 newreq = request.split("/delayedPostLogin")
 newreq[0] += "/delayedPostSecurePage"
 request = newreq[0] + newreq[1]
-print(request)
+print("request 2:\n" + request)
 time.sleep(30)
 
 sock2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -40,5 +40,5 @@ sock2.send(request.encode())
 
 response = sock2.recv(4096).decode()
 
-print(response)
+print("response 2:\n" + response)
 sock2.close()
